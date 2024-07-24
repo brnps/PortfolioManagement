@@ -59,3 +59,13 @@ public void EnviarEmail(string email, string assunto, string mensagem)
 ```
 
 Substitua "smtp.example.com", "your-email@example.com" e "your-email-password" pelos detalhes do seu servidor SMTP.
+
+### 4. Executar a Aplicação
+
+Compile e execute a aplicação usando o comando `dotnet run`:
+
+```bash
+dotnet run
+```
+
+A aplicação será iniciada e estará disponível no http://localhost:5000 ou https://localhost:5001 por padrão.
