@@ -21,6 +21,7 @@ Clone o repositório contendo o código da aplicação para o seu ambiente local
 ```bash
 git clone https://github.com/usuario/nome-do-repositorio.git
 cd nome-do-repositorio
+```
 
 ### 2. Restaurar Dependências
 
@@ -28,3 +29,33 @@ Restaure as dependências do projeto usando o comando `dotnet restore`:
 
 ```bash
 dotnet restore
+```
+
+### 3. Configurar o Servidor SMTP
+
+Modifique a configuração do servidor SMTP no arquivo `Services/EmailService.cs` para corresponder às suas credenciais e configuração do servidor de e-mail:
+
+```csharp
+public void EnviarEmail(string email, string assunto, string mensagem)
+{
+    var message = new MimeMessage();
+    message.From.Add(new MailboxAddress("Portfolio Management", "noreply@example.com"));
+    message.To.Add(new MailboxAddress("", email));
+    message.Subject = assunto;
+    message.Body = new TextPart("plain")
+    {
+        Text = mensagem
+    };
+
+    using (var client = new SmtpClient())
+    {
+        client.Connect("smtp.example.com", 587, false); // Configure o servidor SMTP
+        client.Authenticate("your-email@example.com", "your-email-password"); // Autenticação
+
+        client.Send(message);
+        client.Disconnect(true);
+    }
+}
+```
+
+Substitua "smtp.example.com", "your-email@example.com" e "your-email-password" pelos detalhes do seu servidor SMTP.
