@@ -69,3 +69,96 @@ dotnet run
 ```
 
 A aplicação será iniciada e estará disponível no http://localhost:5000 ou https://localhost:5001 por padrão.
+
+### 5. Verificar o Envio de E-mails
+
+Para verificar se o envio de e-mails está funcionando corretamente, você pode:
+
+- **Verificar os Logs**: Acompanhe os logs do console para mensagens de sucesso ou erro durante o envio de e-mails.
+- **Consultar o Endereço de E-mail**: Verifique o endereço de e-mail do administrador configurado para ver se as notificações são recebidas.
+
+### 6. Testar os Endpoints da API
+
+Use uma ferramenta de API, como o [Postman](https://www.postman.com/) ou o [Swagger UI](http://localhost:5000/swagger), para testar os endpoints disponíveis:
+
+- **POST /api/transacoes/comprar**: Realiza uma compra.
+  - **Exemplo de Requisição:**
+
+    ```bash
+    curl -X POST "http://localhost:5000/api/transacoes/comprar" -H "Content-Type: application/json" -d '{"clienteId": "cliente1", "produtoId": 1, "quantidade": 10}'
+    ```
+
+  - **Parâmetros de Requisição (JSON):**
+
+    ```json
+    {
+      "clienteId": "string",
+      "produtoId": "int",
+      "quantidade": "int"
+    }
+    ```
+
+  - **Resposta:**
+
+    ```json
+    {
+      "success": true,
+      "message": "Compra realizada com sucesso."
+    }
+    ```
+
+- **POST /api/transacoes/vender**: Realiza uma venda.
+  - **Exemplo de Requisição:**
+
+    ```bash
+    curl -X POST "http://localhost:5000/api/transacoes/vender" -H "Content-Type: application/json" -d '{"clienteId": "cliente1", "produtoId": 1, "quantidade": 5}'
+    ```
+
+  - **Parâmetros de Requisição (JSON):**
+
+    ```json
+    {
+      "clienteId": "string",
+      "produtoId": "int",
+      "quantidade": "int"
+    }
+    ```
+
+  - **Resposta:**
+
+    ```json
+    {
+      "success": true,
+      "message": "Venda realizada com sucesso."
+    }
+    ```
+
+- **GET /api/transacoes/{clienteId}**: Consulta o extrato de um cliente.
+  - **Exemplo de Requisição:**
+
+    ```bash
+    curl -X GET "http://localhost:5000/api/transacoes/cliente1"
+    ```
+
+  - **Resposta:**
+
+    ```json
+    {
+      "clienteId": "cliente1",
+      "transacoes": [
+        {
+          "produtoId": 1,
+          "quantidade": 10,
+          "tipo": "compra",
+          "data": "2024-07-23T12:34:56Z"
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 5,
+          "tipo": "venda",
+          "data": "2024-07-24T08:30:00Z"
+        }
+      ]
+    }
+    ```
+```
