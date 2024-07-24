@@ -161,4 +161,28 @@ Use uma ferramenta de API, como o [Postman](https://www.postman.com/) ou o [Swag
       ]
     }
     ```
-```
+
+### 7. Configurar o Agendamento de Tarefas
+
+A aplicação utiliza o `Quartz` para agendar o envio diário de e-mails. Certifique-se de que a configuração do agendador no arquivo `Program.cs` está correta para sua necessidade.
+
+### 8. Encerrar a Aplicação
+
+Para parar a aplicação, pressione `Ctrl+C` no terminal onde a aplicação está sendo executada.
+
+## Documentação Adicional
+
+- **[Documentação do .NET](https://docs.microsoft.com/en-us/dotnet/core/)**: Para mais informações sobre o .NET.
+- **[Documentação do MailKit](https://github.com/jstedfast/MailKit)**: Para detalhes sobre o uso do MailKit.
+- **[Documentação do Quartz](https://www.quartz-scheduler.net/)**: Para mais detalhes sobre agendamento de tarefas com Quartz.
+
+## Resolução de Problemas
+
+- **Não Consigo Enviar E-mails:**
+  - Verifique as credenciais do servidor SMTP e a configuração da porta.
+  - Certifique-se de que seu servidor SMTP está acessível a partir do ambiente onde a aplicação está executando.
+
+- **Endpoints Não Funcionam:**
+  - Verifique se a aplicação está em execução e escutando na porta correta (`http://localhost:5000` por padrão).
+  - Verifique os logs da aplicação para mensagens de erro.
+
