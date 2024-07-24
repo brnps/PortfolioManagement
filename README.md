@@ -21,3 +21,10 @@ Clone o repositório contendo o código da aplicação para o seu ambiente local
 ```bash
 git clone https://github.com/usuario/nome-do-repositorio.git
 cd nome-do-repositorio
+
+### 2. Restaurar Dependências
+
+Restaure as dependências do projeto usando o comando `dotnet restore`:
+
+```bash
+dotnet restore
