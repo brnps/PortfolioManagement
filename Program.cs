@@ -10,12 +10,10 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar serviços ao contêiner
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Adicionar serviços personalizados
 builder.Services.AddSingleton<GestaoProdutosService>();
 builder.Services.AddSingleton<TransacaoService>();
 
@@ -41,7 +39,6 @@ builder.Services.AddHostedService<QuartzHostedService>();
 
 var app = builder.Build();
 
-// Configurar o pipeline de solicitação HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

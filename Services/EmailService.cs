@@ -30,8 +30,10 @@ namespace PortfolioManagement.Services
 
             using (var client = new SmtpClient())
             {
-                client.Connect("smtp.example.com", 587, false); // Configure o servidor SMTP
-                client.Authenticate("your-email@example.com", "your-email-password"); // Autenticação
+                //Configuração do Servidor SMTP
+                client.Connect("smtp.example.com", 587, false);
+                //Configuração de E-mail e Senha
+                client.Authenticate("your-email@example.com", "your-email-password");
 
                 client.Send(message);
                 client.Disconnect(true);

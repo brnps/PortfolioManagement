@@ -34,8 +34,7 @@ namespace PortfolioManagement.Services
         }
 
         public void RealizarVenda(Transacao transacao)
-        {
-            // Verificar se o produto e o cliente existem
+        {            
             var produto = produtos.FirstOrDefault(p => p.Id == transacao.ProdutoFinanceiroId);
             var cliente = clientes.FirstOrDefault(c => c.Id == transacao.ClienteId);
 
@@ -56,7 +55,6 @@ namespace PortfolioManagement.Services
             return transacoes.Where(t => t.ClienteId == clienteId).ToList();
         }
 
-        // Métodos para adicionar produtos e clientes simulados
         public void AdicionarProduto(ProdutoFinanceiro produto)
         {
             produtos.Add(produto);
