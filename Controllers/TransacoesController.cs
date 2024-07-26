@@ -27,6 +27,11 @@ namespace PortfolioManagement.Controllers
                 _transacaoService.RealizarCompra(transacao);
                 return Ok();
             }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Argumento inválido ao realizar compra.");
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao realizar compra.");
@@ -41,6 +46,11 @@ namespace PortfolioManagement.Controllers
             {
                 _transacaoService.RealizarVenda(transacao);
                 return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Argumento inválido ao realizar venda.");
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

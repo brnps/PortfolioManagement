@@ -28,23 +28,28 @@ namespace PortfolioManagement.Services
                 var produto = produtos.FirstOrDefault(p => p.Id == transacao.ProdutoFinanceiroId);
                 var cliente = clientes.FirstOrDefault(c => c.Id == transacao.ClienteId);
 
-                if (produto != null && cliente != null)
+                if (produto == null)
                 {
-                    transacao.TipoTransacao = "Compra";
-                    transacao.DataTransacao = DateTime.Now;
-                    transacoes.Add(transacao);
+                    _logger.LogWarning("Produto não encontrado para ID {ProdutoId}", transacao.ProdutoFinanceiroId);
+                    throw new ArgumentException("Produto não encontrado.");
+                }
 
-                    _logger.LogInformation("Compra realizada com sucesso: {@Transacao}", transacao);
-                }
-                else
+                if (cliente == null)
                 {
-                    throw new Exception("Produto ou Cliente não encontrado.");
+                    _logger.LogWarning("Cliente não encontrado para ID {ClienteId}", transacao.ClienteId);
+                    throw new ArgumentException("Cliente não encontrado.");
                 }
+
+                transacao.TipoTransacao = "Compra";
+                transacao.DataTransacao = DateTime.Now;
+                transacoes.Add(transacao);
+
+                _logger.LogInformation("Compra realizada com sucesso: {@Transacao}", transacao);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao realizar compra.");
-                throw; 
+                throw; // Re-lançar a exceção para que o controlador possa lidar com ela
             }
         }
 
@@ -55,23 +60,28 @@ namespace PortfolioManagement.Services
                 var produto = produtos.FirstOrDefault(p => p.Id == transacao.ProdutoFinanceiroId);
                 var cliente = clientes.FirstOrDefault(c => c.Id == transacao.ClienteId);
 
-                if (produto != null && cliente != null)
+                if (produto == null)
                 {
-                    transacao.TipoTransacao = "Venda";
-                    transacao.DataTransacao = DateTime.Now;
-                    transacoes.Add(transacao);
+                    _logger.LogWarning("Produto não encontrado para ID {ProdutoId}", transacao.ProdutoFinanceiroId);
+                    throw new ArgumentException("Produto não encontrado.");
+                }
 
-                    _logger.LogInformation("Venda realizada com sucesso: {@Transacao}", transacao);
-                }
-                else
+                if (cliente == null)
                 {
-                    throw new Exception("Produto ou Cliente não encontrado.");
+                    _logger.LogWarning("Cliente não encontrado para ID {ClienteId}", transacao.ClienteId);
+                    throw new ArgumentException("Cliente não encontrado.");
                 }
+
+                transacao.TipoTransacao = "Venda";
+                transacao.DataTransacao = DateTime.Now;
+                transacoes.Add(transacao);
+
+                _logger.LogInformation("Venda realizada com sucesso: {@Transacao}", transacao);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao realizar venda.");
-                throw; 
+                throw; // Re-lançar a exceção para que o controlador possa lidar com ela
             }
         }
 
@@ -87,7 +97,7 @@ namespace PortfolioManagement.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao obter extrato para o cliente ID {ClienteId}", clienteId);
-                throw; // Re-lançar a exceção para que o controlador possa lidar com ela
+                throw;
             }
         }
 
@@ -101,7 +111,7 @@ namespace PortfolioManagement.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao adicionar produto.");
-                throw; 
+                throw;
             }
         }
 
@@ -115,7 +125,7 @@ namespace PortfolioManagement.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao adicionar cliente.");
-                throw; 
+                throw;
             }
         }
     }

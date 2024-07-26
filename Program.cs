@@ -22,6 +22,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<GestaoProdutosService>();
 builder.Services.AddSingleton<TransacaoService>();
+builder.Services.AddScoped<TransacaoService>();
+
 
 // Adicionar serviços simulados de produtos e clientes para exemplo
 var produtos = new List<ProdutoFinanceiro>
