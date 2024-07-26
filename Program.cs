@@ -10,6 +10,12 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMemoryCache();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+    options.InstanceName = "Portfolio_";
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,6 +43,8 @@ builder.Services.AddSingleton(new JobSchedule(
 
 builder.Services.AddHostedService<QuartzHostedService>();
 
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

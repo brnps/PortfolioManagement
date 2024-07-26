@@ -47,3 +47,10 @@
 /Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/obj/Debug/net8.0/PortfolioManagement.sourcelink.json
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/Pipelines.Sockets.Unofficial.dll
+/Users/brunops/Documents/Dev/TesteXP/PortfolioManagement/bin/Debug/net8.0/StackExchange.Redis.dll

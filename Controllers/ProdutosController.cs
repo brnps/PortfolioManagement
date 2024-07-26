@@ -1,46 +1,77 @@
 using Microsoft.AspNetCore.Mvc;
 using PortfolioManagement.Models;
 using PortfolioManagement.Services;
+using System;
+using System.Threading.Tasks;
 
-namespace PortfolioManagement.Controllers
+[ApiController]
+[Route("api/[controller]")]
+public class ProdutoController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProdutosController : ControllerBase
+    private readonly GestaoProdutosService _produtoService;
+
+    public ProdutoController(GestaoProdutosService produtoService)
     {
-        private readonly GestaoProdutosService _gestaoProdutosService;
+        _produtoService = produtoService;
+    }
 
-        public ProdutosController(GestaoProdutosService gestaoProdutosService)
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        try
         {
-            _gestaoProdutosService = gestaoProdutosService;
-        }
-
-        [HttpPost]
-        public IActionResult AdicionarProduto([FromBody] ProdutoFinanceiro produto)
-        {
-            _gestaoProdutosService.AdicionarProduto(produto);
-            return Ok();
-        }
-
-        [HttpPut]
-        public IActionResult AtualizarProduto([FromBody] ProdutoFinanceiro produto)
-        {
-            _gestaoProdutosService.AtualizarProduto(produto);
-            return Ok();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult RemoverProduto(int id)
-        {
-            _gestaoProdutosService.RemoverProduto(id);
-            return Ok();
-        }
-
-        [HttpGet]
-        public IActionResult ListarProdutos()
-        {
-            var produtos = _gestaoProdutosService.ListarProdutos();
+            var produtos = await _produtoService.ListarProdutosAsync();
             return Ok(produtos);
+        }
+        catch (Exception ex)
+        {
+            // Log de exceção
+            return StatusCode(500, "Ocorreu um erro ao processar a requisição.");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult Post([FromBody] ProdutoFinanceiro produto)
+    {
+        try
+        {
+            _produtoService.AdicionarProduto(produto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Log de exceção
+            return StatusCode(500, "Ocorreu um erro ao processar a requisição.");
+        }
+    }
+
+    [HttpPut]
+    public IActionResult Put([FromBody] ProdutoFinanceiro produto)
+    {
+        try
+        {
+            _produtoService.AtualizarProduto(produto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Log de exceção
+            return StatusCode(500, "Ocorreu um erro ao processar a requisição.");
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        try
+        {
+            _produtoService.RemoverProduto(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Log de exceção
+            return StatusCode(500, "Ocorreu um erro ao processar a requisição.");
         }
     }
 }
