@@ -49,7 +49,7 @@ namespace PortfolioManagement.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao realizar compra.");
-                throw; // Re-lançar a exceção para que o controlador possa lidar com ela
+                throw;
             }
         }
 
@@ -81,7 +81,7 @@ namespace PortfolioManagement.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao realizar venda.");
-                throw; // Re-lançar a exceção para que o controlador possa lidar com ela
+                throw;
             }
         }
 
